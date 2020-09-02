@@ -13,12 +13,12 @@ https://github.com/kubernetes/ingress-nginx
 The ingress controller consumes Ingress, ConfigMap, Secret and Service resources and creates `nginx.conf` along with some lua magic. So the connection flow doesn't really go through these resources, but they appear logically consecutive;
 
 * Ingress resource
-** HTTP-centric hostname/path rules
-** Whether to teminate TLS for a given hostname, and the Secret resource with a certificate
-** A backend app Service & Port
+* * HTTP-centric hostname/path rules
+* * Whether to teminate TLS for a given hostname, and the Secret resource with a certificate
+* * A backend app Service & Port
 * Backend app Service's labelSelector
 * All pods matching that labelSelector
-** Whether those pods are Ready
+* * Whether those pods are Ready
 
 The ingress controller uses that config & makes a connection directly to one of the backend app pods.
 

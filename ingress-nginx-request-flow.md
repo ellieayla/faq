@@ -5,20 +5,20 @@ https://github.com/kubernetes/ingress-nginx
 * Load Balancer, often from a cloud provider, listening on port 80/443
 * Kubernetes Node at a nodeport, like 20345.
 * Service of type LoadBalancer. 
-** This is a superset of the functionality of a service of type NodePort.
-** Label Selector for the ingress-nginx pod(s)
+  * This is a superset of the functionality of a service of type NodePort.
+  * Label Selector for the ingress-nginx pod(s)
 * Ingress-Nginx pod(s), port 80/443
 * nginx daemon listening on 0.0.0.0:80/443
 
 The ingress controller consumes Ingress, ConfigMap, Secret and Service resources and creates `nginx.conf` along with some lua magic. So the connection flow doesn't really go through these resources, but they appear logically consecutive;
 
 * Ingress resource
-* * HTTP-centric hostname/path rules
-* * Whether to teminate TLS for a given hostname, and the Secret resource with a certificate
-* * A backend app Service & Port
+  * HTTP-centric hostname/path rules
+  * Whether to teminate TLS for a given hostname, and the Secret resource with a certificate
+  * A backend app Service & Port
 * Backend app Service's labelSelector
 * All pods matching that labelSelector
-* * Whether those pods are Ready
+  * Whether those pods are Ready
 
 The ingress controller uses that config & makes a connection directly to one of the backend app pods.
 
